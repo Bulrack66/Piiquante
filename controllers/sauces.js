@@ -1,8 +1,20 @@
 const Sauce = require('../models/sauces');
 const fs = require('fs');
 
+exports.getAllSauce = (req, res, next) => {
+    Sauce.find()
+    .then((sauces) => {res.status(200).json(sauces)})
+    .catch((error) => {res.status(400).json({error: error})});
+};
+
+exports.getOneSauce = (req, res, next) => {
+    Sauce.findOne({_id: req.params.id})
+    .then((sauce) => {res.status(200).json(sauce)})
+    .catch((error) => {res.status(404).json({error: error})});
+};
+
 exports.createSauce = (req, res, next) => {
-    const sauceObject = JSON.parse(req.body.sauce);
+    const sauceObject = JSON.parse(req.body.Sauce);
     delete sauceObject._id;
     delete sauceObject._userId;
     const sauce = new Sauce({
@@ -63,10 +75,3 @@ exports.deleteSauce = (req, res, next) => {
             res.status(500).json({ error });
         });
  };
-
-exports.getAllSauce = (req, res, next) => {
-  Sauce.find().then(
-    (sauces) => {res.status(200).json(sauces)})
-        .catch((error) => {res.status(400).json({error: error});
-    });
-};
