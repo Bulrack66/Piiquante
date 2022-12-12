@@ -64,26 +64,41 @@ exports.deleteSauce = (req, res, next) => {
                 });
             }
         })
-        .catch( error => {
-            res.status(500).json({ error });
-        });
+        .catch( error => { res.status(500).json({ error })});
  };
 
  exports.likes = (req, res, next) => {
-    Sauce.findOne({ _id: req.params.id})
-        .then(sauce => {
-            if (sauce.userId != req.auth.userId) {
-                res.status(401).json({message: 'Not authorized'});
-            } else {
-                const filename = sauce.imageUrl.split('/images/')[1];
-                SauceLikes = () => {
-                    Sauce.likes({_id: req.params.id})
-                        .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
-                        .catch(error => res.status(401).json({ error }));
-                };
+    //console.log(req.body, req.params)
+    const likesSauce = req.file ? {
+        ...JSON.parse(req.body.sauce),
+    } : { ...req.body };
+    Sauce.find()
+        .then((likes) => {
+            switch(req.body.like) {
+                case 1:
+                    console.log(+1, likesSauce, req.auth.userId);
+                    break;
+                case -1: 
+                    console.log(-1, likesSauce, req.auth.userId);
+                    break
             }
-        })
-        .catch( error => {
-            res.status(500).json({ error });
-        });
+            res.status(200).json(likes)
+            })
+        .catch( error => { res.status(500).json({ error })});
+    // Likes.findOne({ _id: req.params.id})
+    //      .then(like => {
+    //         if (userId && _id === 1) {
+    //             { res.status(200).json({message: 'OK'}) }
+    //         } else {
+    //             const filename = sauce.imageUrl.split('/images/')[1];
+    //             SauceLikes = () => {
+    //                 Sauce.likes({_id: req.params.id})
+    //                     .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
+    //                     .catch(error => res.status(401).json({ error }));
+    //             };
+    //         }
+    //     })
+    //     .catch( error => {
+    //         res.status(500).json({ error });
+    //     });
  };
