@@ -2,11 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+require('dotenv').config()
 
 const sauceRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/auth');
 
-mongoose.connect('mongodb+srv://piquante:AZaLW7a35LHXDZAo@cluster0.ee5f8nj.mongodb.net/?retryWrites=true&w=majority',
+const getId = process.env.DB_USER;
+const getPS = process.env.DB_PASS; 
+const getUrl = process.env.DB_HOST; 
+
+mongoose.connect(`mongodb+srv://${getId}:${getPS}@${getUrl}`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
