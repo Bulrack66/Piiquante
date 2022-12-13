@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.set('strictQuery', true)
+mongoose.set('strictQuery', true);
 
 const sauceSchema = mongoose.Schema({
   userId: { type: String, required: true },
