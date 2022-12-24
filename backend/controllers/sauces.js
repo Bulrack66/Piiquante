@@ -68,9 +68,6 @@ exports.deleteSauce = (req, res, next) => {
  };
 
  exports.likes = (req, res, next) => {
-    const likesSauce = req.file ? {
-        ...JSON.parse(req.body.sauce),
-    } : { ...req.body };
     Sauce.find()
         .then((likes) => {
             switch(req.body.like) {
@@ -84,6 +81,8 @@ exports.deleteSauce = (req, res, next) => {
                     //     .then(() => res.status(200).json({message : 'Objet modifié!'}))
                     //     .catch(error => res.status(401).json({ error }));
                     console.log(+1, likesSauce, req.auth.userId);
+                    break;
+                case 0:
                     break;
                 case -1: 
                     console.log(-1, likesSauce, req.auth.userId);
