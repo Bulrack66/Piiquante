@@ -20,7 +20,7 @@ Add folder /images .
 
 Add environment file .env and add the variables for mongodb:
                     DB_HOST="cluster0.ee5f8nj.mongodb.net/?retryWrites=true&w=majority"
-                    DB_USER="username"`
-                    DB_PASS="password"
+                    DB_USER="your username"`
+                    DB_PASS="your password"
 
 Run `nodemon` for a dev server from backend folder.
