@@ -14,6 +14,13 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Development server backEnd
 
-Add folder /images in the folder backend.
+In the folder backend:
+
+Add folder /images .
+
+Add environment file .env and add the variables for mongodb:
+                    DB_HOST="cluster0.ee5f8nj.mongodb.net/?retryWrites=true&w=majority"
+                    DB_USER="username"`
+                    DB_PASS="password"
 
 Run `nodemon` for a dev server from backend folder.
