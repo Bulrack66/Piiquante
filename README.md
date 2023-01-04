@@ -14,6 +14,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Development server backEnd
 
+Run `npm install`
+
 In the folder backend:
 
 Add folder /images .
